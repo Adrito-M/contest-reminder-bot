@@ -1,7 +1,7 @@
 const axios = require('axios')
 
 module.exports = {
-    getCodeforcesData : async function () {
+    getLeetcodeData : async function () {
 
         const contests = await axios.get('https://leetcode.com/graphql?query={%20upcomingContests%20{%20title%20titleSlug%20startTime%20duration%20}%20}').then(obj => obj.data.data.upcomingContests)
         let contestArr = []
