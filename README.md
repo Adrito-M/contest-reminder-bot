@@ -44,18 +44,20 @@ $ node bot.js
 ## Available Commands:
 
 - #### `/help` or `r!help`
+
     Shows the help message. The help message is shown by default when the bot joins a new Server.
 
-    ![Screenshot of /help](./lib/help.png, 'help')
+    ![Debugit](./lib/help.png)
 
 - #### `/commands` or `r!commands`
+
     Shows available commands.
 
-    ![Screenshot of /commands](./lib/commands.png, 'commands')
+    ![Screenshot of /commands](./lib/commands.png)
 
 - #### `/setup` or `r!setup`
     Asks which websites to set reminders for. Creates a channel `contest-reminder` to send reminders in that channel. After creation, the channel can be renamed or moved around. If the channel is deleted, or the preferences need to be changed, run `/setup` again.
 
-    ![Screenshot of /setup](./lib/setup.png, 'setup')
+    ![Screenshot of /setup](./lib/setup.png)
 
 ## Demo:
