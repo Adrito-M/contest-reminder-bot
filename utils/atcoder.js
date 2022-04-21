@@ -7,7 +7,7 @@ function hourstomins (arg) {
 }
 
 module.exports = {
-    getAtcoderData : async function () {
+    getData : async function () {
 
         const {data} = await axios.get('https://atcoder.jp/contests')
         const $ = cheerio.load(data)

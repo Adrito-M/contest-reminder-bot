@@ -1,7 +1,7 @@
 const axios = require('axios')
 
 module.exports = {
-    getCodechefData : async function () {
+    getData : async function () {
 
         const contests = await axios.get('https://www.codechef.com/api/list/contests/all').then(obj => obj.data.future_contests)
         let contestArr = []

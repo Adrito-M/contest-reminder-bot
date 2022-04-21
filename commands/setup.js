@@ -1,5 +1,5 @@
 const { MessageActionRow, MessageSelectMenu, MessageEmbed } = require("discord.js")
-
+const emojiHandler = require('../utils/emojiHandler')
 const channelSchema = require('../Schemas/channelSchema')
 
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
     description: 'Setup the reminder channel',
     testOnly: true,
     slash: 'both',
-    callback: async ({message, interaction: msgInt, channel, guild}) => {
+    callback: async ({message, interaction: msgInt, channel, guild, client}) => {
         const emb = new MessageEmbed
         emb.setTitle('Bot Setup')
         emb.setDescription(`Select websites that you wish to receive updates from
@@ -25,18 +25,22 @@ module.exports = {
                                 .addOptions({
                                     label: 'Codeforces',
                                     value: 'cf',
+                                    emoji: await emojiHandler.getEmoji(client, 'codeforces'),
                                 },
                                 {
                                     label: 'Codechef',
                                     value: 'cc',
+                                    emoji: await emojiHandler.getEmoji(client, 'codechef'),
                                 },
                                 {
                                     label: 'Atcoder',
                                     value: 'ac',
+                                    emoji: await emojiHandler.getEmoji(client, 'atcoder')
                                 },
                                 {
                                     label: 'Leetcode',
                                     value: 'lc',
+                                    emoji: await emojiHandler.getEmoji(client, 'leetcode')
                                 },)                   
         )
         
@@ -98,7 +102,8 @@ module.exports = {
                         await msgref.edit({
                             embeds: [{
                                 description: `Preferences have been updated
-                                              New channel <#${newChannel.id}> created`,
+                                              New channel <#${newChannel.id}> created
+                                              Feel free to move the channel around or change its name`,
                                 color: 'GREEN'
                             }],
                             components: []
@@ -108,7 +113,8 @@ module.exports = {
                             embeds:[{
                                 description: `New Channel Created by <@!965978317209620510>`,
                                 color: 'YELLOW'
-                            }]})
+                            }]
+                        })
                     }
                 }
             })

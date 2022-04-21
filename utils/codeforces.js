@@ -1,7 +1,7 @@
 const axios = require('axios')
 
 module.exports = {
-    getCodeforcesData : async function () {
+    getData : async function () {
 
         const contests = await axios.get('https://codeforces.com/api/contest.list?gym=false').then(obj => obj.data.result)
         let contestArr = []
