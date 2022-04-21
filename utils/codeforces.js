@@ -7,7 +7,7 @@ module.exports = {
             let contestArr = []
             for (let contest of contests) {
 
-                if (contest.phase !== 'BEFORE') break
+                if (contest.phase !== 'BEFORE' || contest.startTimeSeconds * 1000 < new Date().getTime()) break
 
                 let tempObj = {
                     website: 'codeforces',
