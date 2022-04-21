@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 const idMap = new Map()
 idMap.set('codeforces','966437591756988507')
 idMap.set('codechef','966437897970516049')

@@ -37,22 +37,22 @@ async function main(client) {
         // console.log(contest.contestStartTime.getTime())
         // console.log(contest.contestStartTime.getTime() - new Date().getTime)
         if (!contestEntry.notiSentFor8hrs && contest.contestStartTime.getTime() - new Date().getTime() <=28860000) {
-            stuffToBroadcast.push(await embedder(client, contest, 1))
+            stuffToBroadcast.push(embedder(contest, 1))
             contestEntry.notiSentFor8hrs = true
         }
 
         if (!contestEntry.notiSentFor1hr && contest.contestStartTime.getTime() - new Date().getTime() <=3660000) {
-            stuffToBroadcast.push(await embedder(client, contest, 2))
+            stuffToBroadcast.push(embedder(contest, 2))
             contestEntry.notiSentFor1hr = true
         }
 
         if (!contestEntry.notiSentFor30mins && contest.contestStartTime.getTime() - new Date().getTime() <=1860000) {
-            stuffToBroadcast.push(await embedder(client, contest, 3))
+            stuffToBroadcast.push(embedder(contest, 3))
             contestEntry.notiSentFor30mins = true
         }
 
         if (!contestEntry.notiSentFor5mins && contest.contestStartTime.getTime() - new Date().getTime() <=360000) {
-            stuffToBroadcast.push(await embedder(client, contest, 4))
+            stuffToBroadcast.push(embedder(contest, 4))
             contestEntry.notiSentFor5mins = true
         }
 

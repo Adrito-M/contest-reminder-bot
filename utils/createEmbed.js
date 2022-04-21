@@ -1,8 +1,7 @@
 const { MessageEmbed } = require("discord.js")
-const emoji = require('./emojiHandler')
 const timeanddatelink = require('./timeanddatelink')
 
-module.exports = async (client, contest, mode) => {
+module.exports = (contest, mode) => {
 
     const modeMap = new Map()
     modeMap[1] = 'Starting in 8 hours'
@@ -12,7 +11,7 @@ module.exports = async (client, contest, mode) => {
 
     const emb = new MessageEmbed
     emb.setColor('AQUA')
-    emb.setAuthor({name: `${contest.website}`})
+    emb.setAuthor({name: `${contest.website}`, iconURL: `${process.env.SERVER_URL}/${contest.website}.png`})
     emb.setTitle(`${modeMap[mode]}`)
     emb.setDescription(`[${contest.contestName}](${contest.contestLink})`)
     emb.addField('Contest Start Time', `[${contest.contestStartTime.toUTCString()}](${timeanddatelink(contest.contestStartTime)})`)
