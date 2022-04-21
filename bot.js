@@ -1,7 +1,7 @@
 const {Client, Intents} = require('discord.js')
 const WOKCommands = require('wokcommands')
 const path = require('path')
-const help = require('./help')
+const help = require('./utils/help')
 const cron = require('node-cron')
 const checkContestStatus = require('./schedule_check')
 

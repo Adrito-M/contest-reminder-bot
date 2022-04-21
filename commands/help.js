@@ -4,7 +4,7 @@ module.exports = {
     slash: 'both',
     testOnly: true,
     callback: ({message, interaction}) => {
-        const msg = require('../help').help()
+        const msg = require('../utils/help').help()
         
         if (interaction) {
             interaction.reply(msg)
