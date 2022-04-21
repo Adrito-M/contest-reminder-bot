@@ -5,22 +5,22 @@ const timeanddatelink = require('./timeanddatelink')
 module.exports = async (client, contest, mode) => {
 
     const modeMap = new Map()
-    modeMap[1] = 'STARTING IN 8 HOURS'
-    modeMap[2] = 'STARTING IN 1 HOUR'
-    modeMap[3] = 'STARTING IN 30 MINS'
-    modeMap[4] = 'STARTING IN 5 MINS'
+    modeMap[1] = 'Starting in 8 hours'
+    modeMap[2] = 'Starting in 1 hour'
+    modeMap[3] = 'Starting in 30 mins'
+    modeMap[4] = 'Starting in 5 mins'
 
     const emb = new MessageEmbed
-
-    emb.setAuthor(`${await emoji.getEmoji(client, contest.website)} ${contest.website.toUpperCase()}`)
+    emb.setColor('AQUA')
+    emb.setAuthor({name: `${contest.website}`})
     emb.setTitle(`${modeMap[mode]}`)
     emb.setDescription(`[${contest.contestName}](${contest.contestLink})`)
-    emb.addField('Contest Start Time', `[${contest.contestStartTime.toUTCString()}](${timeanddatelink(contest.contestStartTime)})`, true)
+    emb.addField('Contest Start Time', `[${contest.contestStartTime.toUTCString()}](${timeanddatelink(contest.contestStartTime)})`)
     emb.addField('Duration', `${contest.contestDurationInMins} minutes`, true)
     if (contest.website == 'codeforces' || contest.website == 'atcoder')
         emb.addField('Type', `${contest.contestType}`, true)
     if (contest.website == 'atcoder')
-        emb.addField('Rated for', `${contest.ratedFor}`)
+        emb.addField('Rated for', `${contest.ratedFor}`, true)
     
     return emb
 }

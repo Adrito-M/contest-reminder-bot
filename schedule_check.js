@@ -20,7 +20,7 @@ async function main(client) {
 
     for (let contest of contests) {
         if (!(await contestDB.exists({_id: contest.contestLink}))) {
-            contestDB.create({
+            await contestDB.create({
                 _id: contest.contestLink,
                 website: contest.website,            
                 contestName: contest.contestName,
@@ -28,40 +28,45 @@ async function main(client) {
                 contestStartTime: contest.contestStartTime,
                 contestDurationInMins: contest.contestDurationInMins,            
                 ratedFor: contest.ratedFor,
-            })
-
-            await contestDB.save()
+            }).then(entry => entry.save())
         }
 
         const contestEntry = await contestDB.findById(contest.contestLink)
-
-        if (!contestEntry.notiSentFor8hrs && contest.contestStartTime.getTime() - new Date().getTime <=28860000) {
+        // console.log(contestEntry)
+        // console.log(contestEntry.notiSentFor8hrs)
+        // console.log(contest.contestStartTime.getTime())
+        // console.log(contest.contestStartTime.getTime() - new Date().getTime)
+        if (!contestEntry.notiSentFor8hrs && contest.contestStartTime.getTime() - new Date().getTime() <=28860000) {
             stuffToBroadcast.push(await embedder(client, contest, 1))
             contestEntry.notiSentFor8hrs = true
         }
 
-        if (!contestEntry.notiSentFor1hr && contest.contestStartTime.getTime() - new Date().getTime <=3660000) {
+        if (!contestEntry.notiSentFor1hr && contest.contestStartTime.getTime() - new Date().getTime() <=3660000) {
             stuffToBroadcast.push(await embedder(client, contest, 2))
             contestEntry.notiSentFor1hr = true
         }
 
-        if (!contestEntry.notiSentFor30mins && contest.contestStartTime.getTime() - new Date().getTime <=1860000) {
+        if (!contestEntry.notiSentFor30mins && contest.contestStartTime.getTime() - new Date().getTime() <=1860000) {
             stuffToBroadcast.push(await embedder(client, contest, 3))
             contestEntry.notiSentFor30mins = true
         }
 
-        if (!contestEntry.notiSentFor5mins && contest.contestStartTime.getTime() - new Date().getTime <=360000) {
+        if (!contestEntry.notiSentFor5mins && contest.contestStartTime.getTime() - new Date().getTime() <=360000) {
             stuffToBroadcast.push(await embedder(client, contest, 4))
             contestEntry.notiSentFor5mins = true
         }
 
-        if (contestEntry.notiSentFor8hrs && contestEntry.notiSentFor1hr && contestEntry.notiSentFor30mins && contestEntry.notiSentFor5mins) {
+        if (contestEntry.notiSentFor8hrs &&
+            contestEntry.notiSentFor1hr &&
+            contestEntry.notiSentFor30mins &&
+            contestEntry.notiSentFor5mins &&
+            contest.contestStartTime.getTime() < new Date().getTime()) {
             await contestDB.findByIdAndDelete(contest.contestLink)
         } else {
             await contestEntry.save()
         }
     }
-
+    // console.log(stuffToBroadcast)
     const guildEntries = await channelDB.find()
     let channelIds = []
     let preferences = []
@@ -73,25 +78,30 @@ async function main(client) {
     for (let i in channelIds) {
         try {
             let channel = await client.channels.fetch(channelIds[i])
-            for (let emb of embeds) {
-                if (emb.author.includes('LEETCODE') && preferences[i].includes('lc')) {
+            for (let emb of stuffToBroadcast) {
+                if (emb.author.name.includes('leetcode') && preferences[i].includes('lc')) {
                     channel.send({embeds: [emb]})
-                } else if (emb.author.includes('ATCODER') && preferences[i].includes('ac')) {
+                } else if (emb.author.name.includes('atcoder') && preferences[i].includes('ac')) {
                     channel.send({embeds: [emb]})
-                } else if (emb.author.includes('CODEFORCES') && preferences[i].includes('cf')) {
+                } else if (emb.author.name.includes('codeforces') && preferences[i].includes('cf')) {
                     channel.send({embeds: [emb]})
-                } else if (emb.author.includes('CODECHEF') && preferences[i].includes('cc')) {
+                } else if (emb.author.name.includes('codechef') && preferences[i].includes('cc')) {
                     channel.send({embeds: [emb]})
                 }
             }
-        } catch {
-            invalidChannels.push(id)
+        } catch (err){
+            // console.log('error in channel finding')
+            // console.log(err)
+            invalidChannels.push(channelIds[i])
         }
     }
 
     for (let id of invalidChannels) {
         await channelDB.findOneAndDelete({defaultChannel: id})
     }
+    // console.log(stuffToBroadcast)
+    stuffToBroadcast = []
+    // console.log('check over')
 }
 
 module.exports = main

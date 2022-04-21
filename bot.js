@@ -23,9 +23,9 @@ client.on('ready', async () => {
         testServers: process.env.DEVELOPEMENT_GUILD_ID
 	}).setDefaultPrefix('r!')
 
-    cron.schedule('*/3 * * * *', () => {
-        checkContestStatus()
-    });
+    cron.schedule('*/2 * * * *', () => {
+        checkContestStatus(client)
+    })
 })
 
 
