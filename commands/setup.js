@@ -1,6 +1,6 @@
 const { MessageActionRow, MessageSelectMenu, MessageEmbed } = require("discord.js")
 const emojiHandler = require('../utils/emojiHandler')
-const channelSchema = require('../Schemas/channelSchema')
+const channelSchema = require('../schemas/channelSchema')
 
 module.exports = {
     category: 'setup',

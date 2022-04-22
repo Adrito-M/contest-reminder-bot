@@ -19,7 +19,7 @@ To clone the project:
 $ git clone https://github.com/Adrito-M/Debugit_2022.git
 $ cd Debugit_2022
 ```
-To test the bot for yourself, create a `.env` file in accordance with `.env_sample` file. Provide your Discord Bot Token in `TOKEN` and a MongoDB URI in `MONGO_URI`.
+To test the bot for yourself, invite bot with [invite_link](https://discord.com/api/oauth2/authorize?client_id=965978317209620510&permissions=8&scope=bot%20applications.commands) to your server. Alternatively, create a `.env` file in accordance with `.env_sample` file. Provide your Discord Bot Token in `TOKEN` and a MongoDB URI in `MONGO_URI`.
 
 For slash commands to register quickly in a test server, provide the server ID in `DEVELOPEMENT_GUILD_ID` and uncomment the following lines:
 
@@ -37,7 +37,7 @@ testServers: process.env.DEVELOPEMENT_GUILD_ID,
 
 Run the bot with 
 ```bash
-$ node bot.js
+$ npm run start
 ```
 
 ## Available Commands:
