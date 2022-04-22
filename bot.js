@@ -2,7 +2,6 @@ const {Client, Intents} = require('discord.js')
 const WOKCommands = require('wokcommands')
 const path = require('path')
 const help = require('./utils/help')
-const cron = require('node-cron')
 const checkContestStatus = require('./schedule_check')
 const server = require('./server')
 require('dotenv').config()
@@ -24,9 +23,10 @@ client.on('ready', async () => {
         // testServers: process.env.DEVELOPEMENT_GUILD_ID
 	}).setDefaultPrefix('r!')
 
-    cron.schedule('*/2 * * * *', () => {
+    while(true) {
+        await new Promise(r => setTimeout(r, 3 * 60 * 1000))
         checkContestStatus(client)
-    })
+    }
 })
 
 client.on('guildCreate', async(guild) => {
