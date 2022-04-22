@@ -60,3 +60,9 @@ $ node bot.js
     ![Screenshot of /setup](./lib/setup.png)
 
 - ## Demo Video:
+    
+
+    https://user-images.githubusercontent.com/98008131/164793404-17c6f954-14bd-496e-8547-66d0781ceba8.mp4
+    
+    This video is also present in the `lib` folder
+    
