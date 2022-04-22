@@ -5,15 +5,12 @@ const channelSchema = require('../Schemas/channelSchema')
 module.exports = {
     category: 'setup',
     description: 'Setup the reminder channel',
-    testOnly: true,
+    // testOnly: true,
     slash: 'both',
     callback: async ({message, interaction: msgInt, channel, guild, client}) => {
         const emb = new MessageEmbed
         emb.setTitle('Bot Setup')
-        emb.setDescription(`Select websites that you wish to receive updates from
-                            This can be changed anytime using the \`setup\` command
-                            This will create a new channel \`contest-reminders\` to send updates
-                            Feel free to move the channel around or change its name.`)
+        emb.setDescription(`Select websites that you wish to receive updates from\nThis can be changed anytime using the \`setup\` command\nThis will create a new channel \`contest-reminders\` to send updates\nFeel free to move the channel around or change its name.`)
         emb.setColor('AQUA')
         const msgRow = new MessageActionRow()
                             .addComponents(
@@ -101,9 +98,7 @@ module.exports = {
                     } else {
                         await msgref.edit({
                             embeds: [{
-                                description: `Preferences have been updated
-                                              New channel <#${newChannel.id}> created
-                                              Feel free to move the channel around or change its name`,
+                                description: `Preferences have been updated\nNew channel <#${newChannel.id}> created\nFeel free to move the channel around or change its name`,
                                 color: 'GREEN'
                             }],
                             components: []

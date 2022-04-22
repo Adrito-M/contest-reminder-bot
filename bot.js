@@ -21,7 +21,7 @@ client.on('ready', async () => {
 	new WOKCommands(client, {
 		commandsDir: path.join(__dirname, 'commands'),
         mongoUri: process.env.MONGO_URI,
-        testServers: process.env.DEVELOPEMENT_GUILD_ID
+        // testServers: process.env.DEVELOPEMENT_GUILD_ID
 	}).setDefaultPrefix('r!')
 
     cron.schedule('*/2 * * * *', () => {

@@ -9,7 +9,6 @@ This is a Discord Bot that sends reminders for upcoming contests from [codeforce
 - [ ] MongoDB / mongoose
 - [ ] axios
 - [ ] cheerio
-- [ ] node-cron
 
 *Github Link: https://github.com/Adrito-M/Debugit_2022*
 
@@ -60,4 +59,4 @@ $ node bot.js
 
     ![Screenshot of /setup](./lib/setup.png)
 
-## Demo:
+- ## Demo Video:

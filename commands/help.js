@@ -2,7 +2,7 @@ module.exports = {
     category: 'Help',
     description: 'Getting Started',
     slash: 'both',
-    testOnly: true,
+    // testOnly: true,
     callback: ({message, interaction}) => {
         const msg = require('../utils/help').help()
         
