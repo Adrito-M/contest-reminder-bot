@@ -32,6 +32,10 @@ async function main(client) {
         }
 
         const contestEntry = await contestDB.findById(contest.contestLink)
+        // console.log(contestEntry)
+        // console.log(contestEntry.notiSentFor8hrs)
+        // console.log(contest.contestStartTime.getTime())
+        // console.log(contest.contestStartTime.getTime() - new Date().getTime)
         if (!contestEntry.notiSentFor8hrs && contest.contestStartTime.getTime() - new Date().getTime() <=28860000) {
             stuffToBroadcast.push(embedder(contest, 1))
             contestEntry.notiSentFor8hrs = true
@@ -62,6 +66,7 @@ async function main(client) {
             await contestEntry.save()
         }
     }
+    // console.log(stuffToBroadcast)
     const guildEntries = await channelDB.find()
     let channelIds = []
     let preferences = []
@@ -85,6 +90,8 @@ async function main(client) {
                 }
             }
         } catch (err){
+            // console.log('error in channel finding')
+            // console.log(err)
             invalidChannels.push(channelIds[i])
         }
     }
@@ -92,7 +99,9 @@ async function main(client) {
     for (let id of invalidChannels) {
         await channelDB.findOneAndDelete({defaultChannel: id})
     }
+    // console.log(stuffToBroadcast)
     stuffToBroadcast = []
+    // console.log('check over')
 }
 
 module.exports = main

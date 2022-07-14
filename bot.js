@@ -19,14 +19,21 @@ client.on('ready', async () => {
     server.serverStart()
 	new WOKCommands(client, {
 		commandsDir: path.join(__dirname, 'commands'),
-        mongoUri: process.env.MONGO_URI,
-        // testServers: process.env.DEVELOPEMENT_GUILD_ID
+    mongoUri: process.env.MONGO_URI,
+    disabledDefaultCommands: [
+            'help',
+            'command',
+            'language',
+            'prefix',
+            'requiredrole',
+            'channelonly'
+    ],
 	}).setDefaultPrefix('r!')
 
-    while(true) {
-        await new Promise(r => setTimeout(r, 3 * 60 * 1000))
-        checkContestStatus(client)
-    }
+  while(true) {
+    await new Promise(r => setTimeout(r, 3 * 60 * 1000))
+    checkContestStatus(client)
+  }
 })
 
 client.on('guildCreate', async(guild) => {
