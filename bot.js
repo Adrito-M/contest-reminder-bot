@@ -3,7 +3,6 @@ const WOKCommands = require('wokcommands')
 const path = require('path')
 const help = require('./utils/help')
 const checkContestStatus = require('./schedule_check')
-const server = require('./server')
 require('dotenv').config()
 
 const client = new Client({
@@ -16,7 +15,6 @@ const client = new Client({
 
 client.on('ready', async () => {
     console.log(`Logged on as ${client.user.tag}`)
-    server.serverStart()
 	new WOKCommands(client, {
 		commandsDir: path.join(__dirname, 'commands'),
     mongoUri: process.env.MONGO_URI,

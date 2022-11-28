@@ -4,24 +4,23 @@
   "description": "",
   "main": "bot.js",
   "scripts": {
-    "start": "npm i && node bot.js",
+    "start": "node bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Adrito-M/Debugit_2022.git"
+    "url": "git+https://github.com/Adrito-M/contest-reminder-bot.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Adrito-M/Debugit_2022/issues"
+    "url": "https://github.com/Adrito-M/contest-reminder-bot/issues"
   },
-  "homepage": "https://github.com/Adrito-M/Debugit_2022#readme",
+  "homepage": "https://github.com/Adrito-M/contest-reminder-bot#readme",
   "dependencies": {
     "axios": "^0.26.1",
     "cheerio": "^1.0.0-rc.10",
     "discord.js": "^13.6.0",
-    "express": "^4.17.3",
     "mongoose": "^6.3.0",
     "wokcommands": "^1.5.3"
   }
